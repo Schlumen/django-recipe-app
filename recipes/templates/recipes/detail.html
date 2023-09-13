@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: rgb(0, 185, 0);
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .recipe-wrapper {
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(255, 254, 174);
+            margin: 25px;
+            border-radius: 20px;
+            box-shadow: 1px 1px 8px -1px black;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin: 10px 20px;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            margin: 10px 20px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        h3 {
+            margin: 10px 20px;
+            text-align: left;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        p {
+            margin: 0 10px 20px;
+            text-align: left;
+            font-size: 16px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        img {
+            width: 100%;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            text-align: left;
+            width: 100%;
+            padding: 0 20px;
+            list-style-position: inside;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 0px 20px 20px;
+            background-color: rgb(0, 185, 0);
+            border-radius: 10px;
+            border: solid black 1px;
+            box-shadow: 1px 1px 8px -1px black;
+            color: black;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+    </style>
+    <title>{{object.name}}</title>
+</head>
+
+<body>
+    <div class="recipe-wrapper">
+        <img src="{{object.pic.url}}" />
+        <h1>{{object.name}}</h1>
+        <h2>Cooking Time: {{object.cooking_time}} minutes &bull; Difficulty: {{object.calculate_difficulty}} &bull;
+            Author: {{object.creator.name}}
+        </h2>
+        <h3>Ingredients:</h3>
+        <ul>
+            {% for ingredient in object.return_ingredients_as_list %}
+            <li>{{ingredient}}</li>
+            {% endfor %}
+        </ul>
+        <h3>Description:</h3>
+        <p>{{object.description}}</p>
+        <a href="{% url 'recipes:list' %}">Back to all recipes</a>
+        <a href="{% url 'logout' %}"> Logout </a>
+    </div>
+</body>
+
+</html>

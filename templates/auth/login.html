@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: rgb(0, 185, 0);
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(255, 254, 174);
+            margin: 25px;
+            border-radius: 20px;
+            box-shadow: 1px 1px 8px -1px black;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin: 20px;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        h2 {
+            margin: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        img {
+            width: 100%;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        button {
+            text-decoration: none;
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 20px 20px 40px;
+            background-color: rgb(0, 185, 0);
+            border-radius: 10px;
+            border: solid black 1px;
+            box-shadow: 1px 1px 8px -1px black;
+            color: black;
+        }
+
+        button:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input {
+            margin: 5px;
+            padding: 5px;
+
+        }
+
+        label {
+            margin: 5px;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="title">
+        <img src="{% static 'recipes/images/website-header.jpg' %}" />
+        <h1>Login</h1>
+        <h2>
+            {% if error_message %}
+            {{error_message}}
+            {% endif %}
+        </h2>
+        <form action="" method="POST">
+            {% comment %} add Django security token {% endcomment %}
+            {% csrf_token %}
+
+            {% comment %} print form received from view {% endcomment %}
+            {{form}}
+
+            {% comment %} add button {% endcomment %}
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+
+</html>

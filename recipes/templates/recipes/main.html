@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            padding-top: 10px;
+            min-height: 100vh;
+            background-color: rgb(0, 185, 0);
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .list {
+            max-width: 1000px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 25px;
+
+        }
+
+        .recipe-item {
+            background-color: rgb(255, 254, 174);
+            border-radius: 15px;
+            box-shadow: 1px 1px 8px -1px black;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h3 {
+            margin: 5px 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            cursor: pointer;
+        }
+    </style>
+    <title>Recipes</title>
+</head>
+
+<body>
+    <a href="{% url 'logout' %}"> Logout </a>
+    <a href="{% url 'recipes:search' %}"> Search </a>
+    <div class="list">
+        {% for object in object_list %}
+        <a class="recipe-item" href="{{object.get_absolute_url}}">
+            <h3>{{object.name}}</h3>
+            <img src="{{object.pic.url}}" width="150" height="200" />
+        </a>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

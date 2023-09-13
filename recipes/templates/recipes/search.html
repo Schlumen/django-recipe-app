@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: rgb(0, 185, 0);
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(255, 254, 174);
+            margin: 25px;
+            border-radius: 20px;
+            box-shadow: 1px 1px 8px -1px black;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin: 20px;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        h2 {
+            margin: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        form {
+            margin: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        table {
+            margin: 0 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        img {
+            margin: 0 20px;
+        }
+
+        button,
+        #back {
+            text-decoration: none;
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 20px;
+            background-color: rgb(0, 185, 0);
+            border-radius: 10px;
+            border: solid black 1px;
+            box-shadow: 1px 1px 8px -1px black;
+            color: black;
+        }
+
+        button:hover,
+        #back:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+    </style>
+    <title>Recipes App</title>
+</head>
+
+<body>
+    <div class="title">
+        <h1>Recipes Search</h1>
+        <form action="" method="POST">
+            {%csrf_token%}
+            {{form}}
+            <button type="submit">Search</button>
+        </form>
+        {% if recipes %}
+        <h2>Search Results:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Recipe Name</th>
+                    <th>Cooking Time (minutes)</th>
+                    <th>Nr. of Ingredients</th>
+                    <th>Difficulty</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                <tr>
+                    <td><a href="{% url 'recipes:detail' pk=recipe.id %}">{{ recipe.name }}</a></td>
+                    <td>{{recipe.cooking_time}}</td>
+                    <td>{{recipe.return_number_of_ingredients}}</td>
+                    <td>{{recipe.calculate_difficulty}}</td>
+                    <td>{{recipe.creator.name}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>Cooking Time:</h2>
+        <img src="data:image/png; base64, {{chart1|safe}}" alt="Plot Chart">
+        <h2>Difficulty:</h2>
+        <img src="data:image/png; base64, {{chart2|safe}}" alt="Pie Chart">
+        <h2>Nr. of Ingredients:</h2>
+        <img src="data:image/png; base64, {{chart3|safe}}" alt="Pie Chart">
+        {% else %}
+        <h2>No data</h2>
+        {% endif %}
+        <a href="{% url 'recipes:list' %}" , id="back">Back to all recipes</a>
+    </div>
+</body>
+
+</html>

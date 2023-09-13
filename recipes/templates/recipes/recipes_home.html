@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: rgb(0, 185, 0);
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(255, 254, 174);
+            margin: 25px;
+            border-radius: 20px;
+            box-shadow: 1px 1px 8px -1px black;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin: 20px;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        h2 {
+            margin: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        img {
+            width: 100%;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 20px 20px 40px;
+            background-color: rgb(0, 185, 0);
+            border-radius: 10px;
+            border: solid black 1px;
+            box-shadow: 1px 1px 8px -1px black;
+            color: black;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+    </style>
+    <title>Recipes App</title>
+</head>
+
+<body>
+    <div class="title">
+        <img src="{% static 'recipes/images/website-header.jpg' %}" />
+        <h1>Recipes App</h1>
+        <h2>Welcome to the delicious Recipe App where you can find and manage fantastic recipes!</h2>
+        <a href="{% url 'login' %}">Login to browse Recipes</a>
+        <a href="https://haendler.dev" target="_blank">About me</a>
+    </div>
+</body>
+
+</html>
